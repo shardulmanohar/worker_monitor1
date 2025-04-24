@@ -1,3 +1,4 @@
+#Requires Python=3.10.16
 opencv-python
 mediapipe
 numpy
