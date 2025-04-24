@@ -1,0 +1,22 @@
+video_path: "assets/WIN_20250424_17_27_35_Pro.mp4"  # Leave blank to use webcam
+
+resize_width: 640
+resize_height: 360
+
+thresholds:
+  palm: 0.01
+  wrist: 0.01
+  elbow: 0.02
+  shoulder: 0.03
+
+angles:
+  upright: [124.1, 117.4, 125.8]
+  slouching: [143.1, 94.4, 142.7]
+
+idle_threshold_seconds: 6
+
+roi:
+  - [0, 0]
+  - [640, 0]
+  - [640, 360]
+  - [0, 360]
