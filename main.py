@@ -109,9 +109,6 @@ def main():
             break
 
         key = cv2.waitKey(1) & 0xFF
-        if key == 13:
-            print("\n--- DEBUG: Enter key pressed ---")
-            # Add debug print logic here
 
         frame = resize_frame(frame, resize_width, resize_height)
         roi_points = get_valid_roi(frame.shape, roi_from_config)
@@ -121,7 +118,6 @@ def main():
         results = pose.process(frame_rgb)
 
         status = "No Person"
-        status_color = (0, 0, 255)
         current_time = time.time()
 
         if results.pose_landmarks:
@@ -165,28 +161,30 @@ def main():
                 
                         if slouch_dist < upright_dist:
                             status = "Idle"
-                            status_color = (0, 0, 255)
                         else:
                             status = "Working"
-                            status_color = (0, 255, 0)
-                
+                                            
             # === Idle time logic ===
             if status == "Working":
                 idle_start_time = None
                 is_idle = False
-                status_color = (0, 255, 0)
             elif status == 'Idle':
                 if idle_start_time is None:
                     idle_start_time = current_time
         # === Display ===
-        cv2.putText(frame, f"Status: {status}", (10, 30),
-                    cv2.FONT_HERSHEY_SIMPLEX, 0.8, status_color, 2)
-
-        if idle_start_time:
+        if(status=='No Person'):
+            cv2.putText(frame, f"Status: No Person", (10, 30),
+                    cv2.FONT_HERSHEY_SIMPLEX, 0.8, (128,128,128), 2)
+        elif(status=='Working'):
+            cv2.putText(frame, f"Status: Working", (10, 30),
+                    cv2.FONT_HERSHEY_SIMPLEX, 0.8, (0,255,0), 2)
+        else:
             idle_time = time.time() - idle_start_time
+            cv2.putText(frame, f"Status: {['Working','Idle'][idle_time>idle_threshold_seconds]}", (10, 30),
+                    cv2.FONT_HERSHEY_SIMPLEX, 0.8, [(0,255,0),(0,0,255)][idle_time>idle_threshold_seconds], 2)
+            
             cv2.putText(frame, f"Idle Time: {idle_time:.1f}s", (10, 60),
-                        cv2.FONT_HERSHEY_SIMPLEX, 0.6, status_color, 2)
-
+                        cv2.FONT_HERSHEY_SIMPLEX, 0.6, (0,0,255), 2)
         
         cv2.imshow(display_name, frame)
         if key == ord('q'):

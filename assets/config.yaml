@@ -1,4 +1,4 @@
-video_path: "assets/WIN_20250424_17_27_35_Pro.mp4"  # Leave blank to use webcam
+video_path: "assets/WIN_20250424_23_43_22_Pro.mp4"  # Leave blank to use webcam
 
 resize_width: 640
 resize_height: 360
@@ -13,7 +13,7 @@ angles:
   upright: [124.1, 117.4, 125.8]
   slouching: [143.1, 94.4, 142.7]
 
-idle_threshold_seconds: 6
+idle_threshold_seconds: 1
 
 roi:
   - [0, 0]

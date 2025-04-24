@@ -50,7 +50,7 @@ angles:
   upright: [124.1, 117.4, 125.8]
   slouching: [143.1, 94.4, 142.7]
 
-idle_threshold_seconds: 6
+idle_threshold_seconds: 1
 
 roi:  # Optional. Leave unset for full-frame
   - [0, 0]
