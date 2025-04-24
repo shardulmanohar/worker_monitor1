@@ -1,3 +1,4 @@
+**⚠️ Requires Python 3.10.16**
 # 🧠 Worker Activity Monitoring System
 
 A real-time, lightweight, standalone vision-based system to detect if a worker is **actively engaged**, **idle**, or **slouching**, using **MediaPipe Pose Estimation**. This system is optimized for low-cost hardware and designed for robust, real-world deployment.
